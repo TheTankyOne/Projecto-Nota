@@ -8,7 +8,7 @@ tutoriales = pygame.image.load("controles.png")
 ventana_x = 1200
 ventana_y = 700
 DISPLAYSURF = pygame.display.set_mode((ventana_x,ventana_y))#, DOUBLEBUF)
-pygame.display.set_caption('Map Rendering Demo')
+pygame.display.set_caption('Wizard Colisseum')
 FPSCLOCK = pygame.time.Clock()
 class imagenes(object):
 	def __init__(self,x,y,fuente):
@@ -86,16 +86,16 @@ class personaje(object):
 		if movement_random == 1:
 			if self.x + self.velocidad <= self.camino[1]:
 				self.x += self.velocidad * nivel * 2.3
-				#self.va_derecha = True
-				#self.va_izquierda = False
+				self.va_derecha = True
+				self.va_izquierda = False
 			else:
 				self.velocidad = self.velocidad * -1
 				self.contador_pasos = 0
 		if movement_random == 2:
 			if self.x - self.velocidad >= self.camino[0]:
 				self.x += self.velocidad * nivel * 2.3
-				#self.va_izquierda = True
-				#self.va_derecha = False
+				self.va_izquierda = True
+				self.va_derecha = False
 			else:
 				self.velocidad = self.velocidad * -1
 				self.contador_pasos = 0
@@ -103,6 +103,8 @@ class personaje(object):
 			if self.y - self.velocidad >= self.camino[3]:
 				self.y += self.velocidad * nivel * 2.3
 				self.velocidad = self.velocidad * -1
+				self.va_izquierda = False
+				self.va_derecha = False
 			else:
 				self.velocidad = self.velocidad * -1
 				self.contador_pasos = 0
@@ -110,6 +112,8 @@ class personaje(object):
 			if self.y + self.velocidad <= self.camino[2]:
 				self.y += self.velocidad * nivel * 2.3
 				self.velocidad = self.velocidad * -1
+				self.va_izquierda = False
+				self.va_derecha = False
 			else:
 				self.velocidad = self.velocidad * -1
 				self.contador_pasos = 0
@@ -306,7 +310,7 @@ while repetir:
 	heroe = personaje(int(ventana_x/2 - 64),int(ventana_y/2),"heroe", ventana_x, 10)
 	#villano = personaje(int(ventana_x/2 + 25),int(ventana_y/2 + 50),"villano",int(ventana_x/2 + 60))
 	villanos = [personaje(ventana_x/2 + 143, random.randint(0,ventana_y), "villano", 800,13) , personaje(ventana_x/2 + 143,random.randint(0,ventana_y), "villano", 800,26),
-             personaje(ventana_x/2 + 143,random.randint(0,ventana_y), "villano", 800, 49), personaje(ventana_x/2 + 143, random.randint(0,ventana_y), "villano", 800,66)]
+             personaje(ventana_x/2 + 143,random.randint(0,ventana_y), "pantheon", 800, 49), personaje(ventana_x/2 + 143, random.randint(0,ventana_y), "pooh", 800,66)]
 	#salud_villano = villano_salud(nivel)
 	villano = villanos[nivel]
 	tuto = imagenes(ventana_x/2 - 152,ventana_y/2, "controles")
@@ -325,7 +329,7 @@ while repetir:
 				quit()
 
 		DISPLAYSURF.fill((0, 0, 0))  # pinta el fondo de negro
-		titulo = texto_intro.render('Dimitri´s colliseum', 1, (255, 0, 0))
+		titulo = texto_intro.render('Wizard Colisseum', 1, (255, 0, 0))
 		personaje_intro.se_mueve_solo(2,1)
 		pint_tut()
 		instrucciones = texto_intro.render(
